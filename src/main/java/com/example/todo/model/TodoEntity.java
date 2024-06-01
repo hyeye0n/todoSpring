@@ -1,15 +1,14 @@
 package com.example.todo.model;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Builder
 @NoArgsConstructor
@@ -19,10 +18,11 @@ import lombok.NoArgsConstructor;
 @Table(name ="Todo")
 public class TodoEntity {
 	@Id
-	@GeneratedValue(generator="system-uuid")  // 자동으로 id 성성
-	@GenericGenerator(name="system-uuid",strategy="uuid")
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
 	private String userId;
 	private String title;
 	private boolean done;
+	private LocalDate date;  // 날짜 필드 추가
 }
