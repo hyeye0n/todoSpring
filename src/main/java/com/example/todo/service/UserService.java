@@ -72,8 +72,7 @@ public class UserService {
 		// 현재 인증된 사용자의 ID를 가져오기
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		String userId = (String) authentication.getPrincipal();
-
-		// 해당 ID에 해당하는 사용자를 찾습니다.
+		// 해당 ID에 해당하는 사용자를 찾기
 		Optional<UserEntity> optionalUser = userRepository.findById(userId);
 		if (optionalUser.isEmpty()) {
 			throw new RuntimeException("User not found");
@@ -83,7 +82,6 @@ public class UserService {
 		user.setEmail(updatedUserEntity.getEmail());
 		user.setUsername(updatedUserEntity.getUsername());
 		user.setPassword(updatedUserEntity.getPassword());
-
 		return userRepository.save(user);
 	}
 }

@@ -92,7 +92,7 @@ public class UserController {
 			// 현재 인증된 사용자의 ID를 가져오기.
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 			String userId = (String) authentication.getPrincipal();
-
+			//log.info("PUT updateinfo");
 			// 업데이트할 사용자 정보 생성
 			UserEntity updatedUserEntity = new UserEntity();
 			updatedUserEntity.setId(userId);
@@ -103,10 +103,9 @@ public class UserController {
 			String encryptedPassword = passwordEncoder.encode(updatedUserInfo.getPassword());
 			updatedUserEntity.setPassword(encryptedPassword);
 
-			// 사용자 정보 업데이트 수행
+			// 사용자 정보 업데이트
 			UserEntity updatedUser = userService.updateUser(updatedUserEntity);
-
-			// 업데이트된 사용자 정보를 UserDTO로 변환하여 반환합니다.
+			// 업데이트된 사용자 정보를 UserDTO로 변환하여 반환
 			if (updatedUser != null) {
 				UserDTO updatedUserDTO = new UserDTO();
 				updatedUserDTO.setId(updatedUser.getId());
