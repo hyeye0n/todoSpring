@@ -60,7 +60,7 @@ public class UserService {
 			userInfo.setEmail(user.getEmail());
 			userInfo.setId(user.getId());
 			userInfo.setUsername(user.getUsername());
-			//userInfo.setPassword(user.getPassword());
+			userInfo.setPassword(user.getPassword());
 			return userInfo;
 		} else {
 			return null;

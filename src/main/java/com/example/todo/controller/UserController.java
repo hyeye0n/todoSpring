@@ -30,6 +30,7 @@ public class UserController {
 
 	private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+	//계정 생성
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody UserDTO userDTO) {
 		try {
@@ -52,6 +53,7 @@ public class UserController {
 		}
 	}
 
+	//로그인
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticate(@RequestBody UserDTO userDTO) {
 		UserEntity user = userService.getByCredentials(userDTO.getEmail(), userDTO.getPassword(), passwordEncoder);
@@ -73,7 +75,7 @@ public class UserController {
 		}
 	}
 
-
+	//계정 정보 보기
 	@GetMapping("/userinfo")
 	public ResponseEntity<?> getUserInfo() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -86,6 +88,7 @@ public class UserController {
 		}
 	}
 
+	//계정 정보 수정
 	@PutMapping("/updateinfo")
 	public ResponseEntity<?> updateUser(@RequestBody UserDTO updatedUserInfo) {
 		try {

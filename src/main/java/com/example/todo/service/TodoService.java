@@ -33,6 +33,7 @@ public class TodoService {
 		return repository.findByUserIdAndDate(userId, date);
 	}
 
+	//todo list 업데이트
 	public List<TodoEntity> update(final TodoEntity entity) {
 		// Validations
 		validate(entity);
@@ -44,6 +45,7 @@ public class TodoService {
 		return repository.findByUserId(entity.getUserId());
 	}
 
+	//todo list 삭제
 	public List<TodoEntity> delete(final TodoEntity entity) {
 		if (repository.existsById(entity.getId())) {
 			repository.deleteById(entity.getId());
@@ -62,5 +64,6 @@ public class TodoService {
 			log.warn("Unknown user.");
 			throw new RuntimeException("Unknown user.");
 		}
+
 	}
 }
